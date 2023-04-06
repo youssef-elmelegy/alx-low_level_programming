@@ -1,12 +1,12 @@
 #include "main.h"
 
 /**
- * _puts_recsion - prints a string, followed vy a new line
- * @s: pointer to the string 
+ * _puts_recursion - prints a string, followed by a new line
+ * @s: pointer to the string
  * Return: void
-*/
+ */
 
-void _puts_recursionn(char *s)
+void _puts_recursion(char *s)
 {
 if (*s != '\0')
 {
