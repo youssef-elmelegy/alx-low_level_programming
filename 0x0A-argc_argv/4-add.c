@@ -15,10 +15,9 @@ int main(int argc, *char argv[])
 
 	while (--argc)
 	{
-		i++;
 		for (c = argv[argc]; *c; c++)
 		{
-			if (argv[argc] < '0' || argv[argc] > '9')
+			if (*c < '0' || *c > '9')
 				return (printf("Error\n"), 1);
 		sum += atoi(argv[argc]);
 	}
