@@ -2,7 +2,6 @@
 
 /**
  * main - prints a program name, followed by a new line
- * @argc: int
  * @argv: list
  * Return: 0
 */
