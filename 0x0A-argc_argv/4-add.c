@@ -18,8 +18,8 @@ int main(int argc, *char argv[])
 		i++;
 		if (argv[i] < '0' || argv[i] > '9')
 			return (printf("Error\n"), 1);
-		sum += argv[i];
+		sum += atoi(argv[i]);
 	}
-	printf("sum\n");
+	printf("%d\n", sum);
 	return (0);
 }
