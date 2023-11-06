@@ -1,5 +1,5 @@
-#ifndef DOG.H
-#define DOG.H
+#ifndef DOG_H
+#define DOG_H
 
 /**
  * struct dog - dog struct
@@ -7,7 +7,7 @@
  * @age: float
  * @owner: char*
  *
- * Descriptiona: long dog struct 
+ * Descriptiona: long dog struct
  */
 
 struct dog
