@@ -2,9 +2,10 @@
 
 /**
  * init_dog - initialize variables
- * *d: struct of dog
- * *name: dog's name
- * *owner: dog's owner
+ * @d: struct of dog
+ * @name: dog's name
+ * @age: age of dog
+ * @owner: dog's owner
  *
  * Return: void.
  */
