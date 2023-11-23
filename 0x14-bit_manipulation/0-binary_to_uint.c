@@ -20,7 +20,7 @@ unsigned int binary_to_uint(const char *b)
 
 			else
 			{
-				conv += b[i] * 2 ^ i;
+				conv += (b[i] - '0') * 2 ^ i;
 			}
 		}
 		return (conv);
