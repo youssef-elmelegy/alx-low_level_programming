@@ -13,6 +13,9 @@
 /*****exec.c*****/
 void execmd(char **argv);
 
+/*****_fork.c*****/
+int _fork(char **new_argv);
+
 /*****_putchar.c.c*****/
 int _putchar(char c);
 
