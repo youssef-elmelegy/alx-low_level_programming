@@ -11,9 +11,9 @@
 int main(int ac, char **argv)
 {
 	char *prompt = "$ ";
-	char *getin;
+	char *getin = NULL;
 	size_t length = 0;
-	ssize_t num;
+	ssize_t num = 0;
 
 	(void)ac;
 	(void)argv;
@@ -26,6 +26,7 @@ int main(int ac, char **argv)
 		if (num == EOF)
 		{
 			_print("Exiting shell...\n");
+			free(getin);
 			return (-1);
 		}
 		_print(getin);
