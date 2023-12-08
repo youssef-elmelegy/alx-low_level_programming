@@ -30,13 +30,8 @@ int main(int ac, char **argv)
 		new_argv = token(argv, getin, num);
 		if (new_argv == NULL)
 			return (-1);
-		for(i = 0; new_argv[i] != NULL; i++)
-		{
-			_print(new_argv[i]);
-			_print("\n");
-			free(new_argv[i]);
-		}
-		free(new_argv);
+		if (_fork(new_argv) < 0)
+		    return (0);
 		argv = new_argv;
 	}
 	free(argv);
