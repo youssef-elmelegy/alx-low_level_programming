@@ -11,7 +11,7 @@
 int main(int ac, char **argv)
 {
 	char *prompt = "$ ";
-	char *getin = NULL;
+	char *getin = NULL, **new_argv = NULL;
 	size_t length = 0;
 	ssize_t num = 0;
 	int i = 0;
@@ -27,15 +27,17 @@ int main(int ac, char **argv)
 			free(getin);
 			return (-1);
 		}
-		argv = token(argv, getin, num);
-		if (argv == NULL)
+		new_argv = token(argv, getin, num);
+		if (new_argv == NULL)
 			return (-1);
-		for(i = 0; argv[i] != NULL; i++)
+		for(i = 0; new_argv[i] != NULL; i++)
 		{
-			_print(argv[i]);
+			_print(new_argv[i]);
 			_print("\n");
-			free(argv[i]);
+			free(new_argv[i]);
 		}
+		free(new_argv);
+		argv = new_argv;
 	}
 	free(argv);
 	free(getin);
@@ -65,7 +67,7 @@ char **token(char **argv, char *getin, size_t size)
 		token = strtok(NULL, delim);
 	}
 
-	argv = malloc(sizeof(char *) * n_tokens + 1);
+	argv = malloc(sizeof(char *) * (n_tokens + 1));
 	if (argv == NULL)
 	{
 		_print("err memory allocate ..");
