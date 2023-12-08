@@ -31,7 +31,13 @@ int main(int ac, char **argv)
 		if (new_argv == NULL)
 			return (-1);
 		if (_fork(new_argv) < 0)
-		    return (0);
+			return (0);
+
+		for (i = 0; new_argv[i] != NULL; i++)
+		{
+			free(new_argv[i]);
+		}
+		free(new_argv);
 		argv = new_argv;
 	}
 	free(argv);
