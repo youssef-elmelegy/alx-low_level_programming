@@ -23,7 +23,6 @@ int main(int ac, char **argv)
 		num = getline(&getin, &length, stdin);
 		if (num == EOF)
 		{
-			_print("Exiting shell...\n");
 			free(getin);
 			return (-1);
 		}
