@@ -31,7 +31,10 @@ int main(int ac, char **argv)
 		if (new_argv == NULL)
 			return (-1);
 		if (_fork(new_argv) < 0)
+		{
+			free(getin);
 			return (0);
+		}
 		for(i = 0; new_argv[i] != NULL; i++)
 		{
 			free(new_argv[i]);
@@ -39,8 +42,8 @@ int main(int ac, char **argv)
 		free(new_argv);
 		argv = new_argv;
 	}
-	free(argv);
 	free(getin);
+	free(argv);
 	return (0);
 }
 
@@ -84,6 +87,5 @@ char **token(char **argv, char *getin, size_t size)
 	}
 	argv[i] = NULL;
 	free(c_getin);
-	token = NULL;
 	return (argv);
 }
