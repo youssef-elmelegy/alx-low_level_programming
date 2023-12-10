@@ -21,6 +21,7 @@ int _fork(char **new_argv)
 	if (child == 0)
 	{
 		execmd(new_argv);
+		free(new_argv[0]);
 		return (-1);
 	}
 	else
