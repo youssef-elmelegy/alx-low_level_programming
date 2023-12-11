@@ -25,20 +25,26 @@ char *_strcpy(char *destination, const char *source)
  *
  * Return: A pointer to the destination buffer.
  */
-char *_strcat(char *destination, const char *source)
+char *_strcat(char *destination, char *source)
 {
-	char *originalDestination = destination;
+	char *original_destination = destination;
+	int destination_length = 0;
+	int source_length = 0;
+	
+	destination_length = str_length(destination);
+	source_length = str_length(source);
 
-	while (*destination != '\0')
+	if (destination_length + source_length + 1 > str_length(original_destination))
 	{
-		destination++;
-	}
-
-	while ((*destination++ = *source++) != '\0')
+		destination = realloc(destination, destination_length + source_length + 1);
+	if (!destination)
 	{
+		perror("realloc failed");
+		return (NULL);
 	}
-
-	return (originalDestination);
+	}
+	_strcpy(destination + destination_length, source);
+	return (original_destination);
 }
 
 /**
