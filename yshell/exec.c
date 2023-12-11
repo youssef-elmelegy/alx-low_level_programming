@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * execmd - function that execute the command
+ * execmd - function that execute the command.
  * @argv: array of the command
  *
  * Return: void

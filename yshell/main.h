@@ -30,7 +30,7 @@ char *_strcat(char *destination, const char *source);
 int _strcmp(const char *str1, const char *str2);
 
 
-/*****prints_help.c*****/
+/*****prints_help.c****/
 int _print(char *string);
 void print_environment(char *env[]);
 

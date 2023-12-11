@@ -2,7 +2,7 @@
 
 /**
  * _strcpy - Copy a string from source to destination.
- * @destination: Pointer to the destination buffer.
+ * @destination: Pointer to the destination buffer
  * @source: Pointer to the source string.
  *
  * Return: A pointer to the destination buffer.
