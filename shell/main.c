@@ -3,7 +3,7 @@
 /**
  * main - A simple shell heart
  * @ac: integar
- * @argv: double pointer
+ * @argv: double pointer.
  *
  * Return: 0 if success
 */
