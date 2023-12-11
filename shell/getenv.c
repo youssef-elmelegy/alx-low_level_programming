@@ -2,7 +2,7 @@
 
 /**
  * _getenv - Get the value of an environment variable.
- * @variable: The name of the environment variable.
+ * @variable: The name of the environment variable..
  *
  * Return: A pointer to the value of the environment variable,
  *         or NULL if the variable is not found.
