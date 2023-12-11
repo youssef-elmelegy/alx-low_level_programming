@@ -10,6 +10,7 @@
 #include <sys/stat.h>
 #include <errno.h>
 
+
 /*****exec.c*****/
 void execmd(char **argv);
 
@@ -34,6 +35,6 @@ char **token(char **argv, char *getin, size_t size);
 char *get_loc(char *command);
 
 /*****_getenv.c*****/
-char *_getenv(const char *variable);
+char *_getenv(const char *variable)
 
 #endif

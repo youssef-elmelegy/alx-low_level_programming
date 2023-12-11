@@ -10,18 +10,18 @@
 
 char *_getenv(const char *variable)
 {
-	char **env = NULL;
+	char **environ = NULL;
 	int i = 0;
 
-	for (i = 0; env[i] != NULL; i++)
+	for (i = 0; environ[i] != NULL; i++)
 	{
-		char *equalSign = _strchr(env[i], '=');
+		char *equalSign = _strchr(environ[i], '=');
 
 		if (equalSign != NULL)
 		{
-			size_t varL = equalSign - env[i];
+			size_t varL = equalSign - environ[i];
 
-			if (_strncmp(variable, env[i], varL) == 0 && variable[varL] == '\0')
+			if (_strncmp(variable, environ[i], varL) == 0 && variable[varL] == '\0')
 			{
 				return (equalSign + 1);
 			}
