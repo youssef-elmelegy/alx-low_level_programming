@@ -26,7 +26,7 @@ int _strncmp(const char *str1, const char *str2, size_t n);
 
 /*****more_helper_string.c*****/
 char *_strcpy(char *destination, const char *source);
-char *_strcat(char *destination, const char *source);
+char *_strcat(char *destination, char *source);
 int _strcmp(const char *str1, const char *str2);
 
 
