@@ -26,7 +26,7 @@ int _strncmp(const char *str1, const char *str2, size_t n);
 char *_strcpy(char *destination, const char *source);
 char *_strcat(char *destination, const char *source);
 
-/*****prints_help.c*****/
+/*****prints_help.c****/
 int _print(char *string);
 
 /*****main.c*****/
