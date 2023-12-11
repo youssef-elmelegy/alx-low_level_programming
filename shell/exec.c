@@ -9,13 +9,14 @@
 
 void execmd(char **argv)
 {
-	char *command = NULL;
+	char *command = NULL, *rel_command = NULL;
 
 	if (argv)
 	{
 		command = argv[0];
+		rel_command = get_loc(command);
 
-		if (execve(command, argv, NULL) == -1)
+		if (execve(rel_command, argv, NULL) == -1)
 		{
 			perror("Error:");
 		}
