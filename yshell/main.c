@@ -46,6 +46,48 @@ int main(int ac, char **argv)
 	return (0);
 }
 
+
+
+char *get_loc(char *command)
+{
+	char *path = NULL, *path_copy = NULL, *path_token = NULL, *file_path = NULL;
+	int command_length = 0, directory_length = 0;
+	struct stat buffer;
+
+	path = getenv("PATH");
+	if (path)
+	{
+		path_copy = str_duplicate(path);
+		command_length = str_length(command);
+		path_token = strtok(path_copy, ":");
+		while (path_token != NULL)
+		{
+			directory_length = str_length(path_token);
+			file_path = malloc(command_length + directory_length + 1);
+			_strcpy(file_path, path_token);
+			_strcat(file_path, "/");
+			_strcat(file_path, command);
+			_strcat(file_path, "\0");
+			if (stat(file_path, &buffer) == 0)
+			{
+				free(path_copy);
+				return (file_path);
+			}
+			else
+			{
+				free(file_path);
+				path_token = strtok(NULL, ":");
+			}
+		}
+		free(path_copy);
+		if (stat(command, &buffer) == 0)
+		{
+			return (command);
+		}
+		return (NULL);
+	}
+	return (NULL);
+}
 /**
  * token - token the string
  * @argv: argv
@@ -68,7 +110,6 @@ char **token(char **argv, char *getin, size_t size)
 		n_tokens++;
 		token = strtok(NULL, delim);
 	}
-
 	argv = malloc(sizeof(char *) * (n_tokens + 1));
 	if (argv == NULL)
 	{
@@ -76,8 +117,6 @@ char **token(char **argv, char *getin, size_t size)
 		free(c_getin);
 		return (NULL);
 	}
-
-
 	token = strtok(c_getin, delim);
 	for (i = 0; token != NULL; i++)
 	{
@@ -85,58 +124,15 @@ char **token(char **argv, char *getin, size_t size)
 		token = strtok(NULL, delim);
 	}
 	argv[i] = NULL;
-	free(c_getin);
-	return (argv);
-}
-
-/**
- * get_loc - Get the full path of a command
- * @command: The command to locate.
- *
- * Return: A pointer to the full path of the command executable,
- *         or NULL if the command is not found in the PATH.
-*/
-
-char *get_loc(char *command)
-{
-	char *path = NULL, *path_copy = NULL, *path_token = NULL, *file_path = NULL;
-	int command_length = 0, directory_length = 0;
-	struct stat buffer;
-
-	path = _getenv("PATH");
-
-	if (path)
+	if (_strcmp(argv[0], "exit") == 0)
 	{
-		path_copy = str_duplicate(path);
-		command_length = str_length(command);
-		path_token = strtok(path_copy, ":");
-
-		while (path_token != NULL)
-		{
-			directory_length = str_length(path_token);
-			file_path = malloc(command_length + directory_length + 2);
-			_strcpy(file_path, path_token);
-			_strcat(file_path, "/");
-			_strcat(file_path, command);
-			_strcat(file_path, "\0");
-
-			if (stat(file_path, &buffer) == 0)
-			{
-				free(path_copy);
-				return (file_path);
-			}
-			else
-			{
-				free(file_path);
-				path_token = strtok(NULL, ":");
-			}
-		}
-		free(path_copy);
-		if (stat(command, &buffer) == 0)
-		{
-			return (command);
-		}
+		printf("Exiting the shell.\n");
 		return (NULL);
 	}
-	return (NULL);
+	else if (strcmp(argv[0], "env") == 0)
+	{
+		print_environment(environ);
+	}
+	free(c_getin);
+	return (argv);
 }

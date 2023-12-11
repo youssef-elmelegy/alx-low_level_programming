@@ -55,11 +55,9 @@ char *str_duplicate(char *string)
  * @str: The string to search within.
  * @c: The character to locate.
  *
- * Return: A pointer to the first occurrence of
- *		the character c in the string str,
- *		or NULL if the character is not found.
+ * Return: A pointer to the first occurrence of the character c in str,
+ *         or NULL if the character is not found.
 */
-
 char *_strchr(const char *str, int c)
 {
 	while (*str != '\0')
@@ -96,3 +94,4 @@ int _strncmp(const char *str1, const char *str2, size_t n)
 	}
 	return (0);
 }
+

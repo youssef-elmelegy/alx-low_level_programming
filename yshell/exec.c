@@ -14,6 +14,7 @@ void execmd(char **argv)
 	if (argv)
 	{
 		command = argv[0];
+
 		rel_command = get_loc(command);
 
 		if (execve(rel_command, argv, NULL) == -1)

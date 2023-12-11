@@ -1,5 +1,6 @@
 #include "main.h"
 
+
 /**
  * _fork - create a child to execute command
  * @new_argv: string of command and arguments
@@ -21,7 +22,6 @@ int _fork(char **new_argv)
 	if (child == 0)
 	{
 		execmd(new_argv);
-		free(new_argv[0]);
 		return (-1);
 	}
 	else
