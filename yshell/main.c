@@ -28,10 +28,14 @@ int main(int ac, char **argv)
 		}
 		new_argv = token(argv, getin, num);
 		if (new_argv == NULL)
+		{
+			free(getin);
 			return (-1);
+		}
 		if (_fork(new_argv) < 0)
 		{
 			free(getin);
+			free(new_argv);
 			return (0);
 		}
 		for (i = 0; new_argv[i] != NULL; i++)
@@ -61,7 +65,7 @@ char *get_loc(char *command)
 	path_copy = str_duplicate(path);
 	command_length = str_length(command);
 	path_token = strtok(path_copy, ":");
-	file_path = NULL;
+
 	while (path_token)
 	{
 		int directory_length = str_length(path_token);
@@ -91,6 +95,29 @@ char *get_loc(char *command)
 	return (NULL);
 }
 /**
+ * cleanup_and_exit - exit builtin function
+ * @argv: argv
+ * @c_getin: c_getin
+ * Return: NULL
+*/
+
+char **cleanup_and_exit(char **argv, char *c_getin)
+{
+	int i = 0;
+
+	_print("Exiting the shell.\n");
+
+	for (i = 0; argv[i] != NULL; i++)
+	{
+		free(argv[i]);
+	}
+	free(argv);
+	free(c_getin);
+
+	return (NULL);
+}
+
+/**
  * token - token the string
  * @argv: argv
  * @getin: string
@@ -104,7 +131,6 @@ char **token(char **argv, char *getin, size_t size)
 	int n_tokens = 0, i = 0;
 
 	(void)size;
-
 	c_getin = str_duplicate(getin);
 	token = strtok(getin, delim);
 	while (token != NULL)
@@ -128,10 +154,9 @@ char **token(char **argv, char *getin, size_t size)
 	argv[i] = NULL;
 	if (_strcmp(argv[0], "exit") == 0)
 	{
-		printf("Exiting the shell.\n");
-		return (NULL);
+		return (cleanup_and_exit(argv, c_getin));
 	}
-	else if (strcmp(argv[0], "env") == 0)
+	else if (_strcmp(argv[0], "env") == 0)
 	{
 		print_environment(environ);
 	}
