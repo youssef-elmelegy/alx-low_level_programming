@@ -11,6 +11,12 @@ int _print(char *string)
 	return (write(STDOUT_FILENO, string, str_length(string)));
 }
 
+
+/**
+ * print_environment - print env
+ * @env: array
+ * Return: void
+*/
 void print_environment(char *env[])
 {
 	int i = 0;
