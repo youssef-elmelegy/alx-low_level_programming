@@ -10,7 +10,7 @@
 
 int main(int ac, char **argv)
 {
-	char *prompt = "$ ";
+
 	char *getin = NULL, **new_argv = NULL;
 	size_t length = 0;
 	ssize_t num = 0;
@@ -19,18 +19,18 @@ int main(int ac, char **argv)
 	(void)ac;
 	while (1)
 	{
-		_print(prompt);
+
 		num = getline(&getin, &length, stdin);
 		if (num == EOF)
 		{
 			free(getin);
-			return (-1);
+			return (0);
 		}
 		new_argv = token(argv, getin, num);
 		if (new_argv == NULL)
 		{
 			free(getin);
-			return (-1);
+			return (0);
 		}
 		if (_fork(new_argv) < 0)
 		{
@@ -105,8 +105,6 @@ char **cleanup_and_exit(char **argv, char *c_getin)
 {
 	int i = 0;
 
-	_print("Exiting the shell.\n");
-
 	for (i = 0; argv[i] != NULL; i++)
 	{
 		free(argv[i]);
@@ -116,6 +114,8 @@ char **cleanup_and_exit(char **argv, char *c_getin)
 
 	return (NULL);
 }
+
+
 
 /**
  * token - token the string
@@ -131,6 +131,7 @@ char **token(char **argv, char *getin, size_t size)
 	int n_tokens = 0, i = 0;
 
 	(void)size;
+
 	c_getin = str_duplicate(getin);
 	token = strtok(getin, delim);
 	while (token != NULL)
@@ -163,3 +164,4 @@ char **token(char **argv, char *getin, size_t size)
 	free(c_getin);
 	return (argv);
 }
+
