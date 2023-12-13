@@ -11,7 +11,7 @@
 int main(int ac, char **argv)
 {
 
-	char *getin = NULL, **new_argv = NULL;
+	char *input = NULL, **new_argv = NULL;
 	size_t length = 0;
 	ssize_t num = 0;
 	int i = 0;
@@ -20,21 +20,21 @@ int main(int ac, char **argv)
 	while (1)
 	{
 
-		num = getline(&getin, &length, stdin);
+		num = getline(&input, &length, stdin);
 		if (num == EOF)
 		{
-			free(getin);
+			free(input);
 			return (0);
 		}
-		new_argv = token(argv, getin, num);
+		new_argv = token(argv, input, num);
 		if (new_argv == NULL)
 		{
-			free(getin);
+			free(input);
 			return (0);
 		}
 		if (_fork(new_argv) < 0)
 		{
-			free(getin);
+			free(input);
 			free(new_argv);
 			return (0);
 		}
@@ -45,15 +45,19 @@ int main(int ac, char **argv)
 		free(new_argv);
 		argv = new_argv;
 	}
-	free(getin);
+	free(input);
 	free(argv);
 	return (0);
 }
 
-
-char *get_loc(char *command)
+/**
+ * path_ finder - geting the path of the command
+ * @command: command
+ * Return: pointer to char
+*/
+char *path_finder(char *command)
 {
-	char *path_copy = NULL, *path_token = NULL, *file_path = NULL;
+	char *path_c = NULL, *path_token = NULL, *file_path = NULL;
 	int command_length = 0;
 	struct stat buffer;
 	char *path = getenv("PATH");
@@ -62,9 +66,9 @@ char *get_loc(char *command)
 	{
 		return (NULL);
 	}
-	path_copy = str_duplicate(path);
+	path_c = str_duplicate(path);
 	command_length = str_length(command);
-	path_token = strtok(path_copy, ":");
+	path_token = strtok(path_c, ":");
 
 	while (path_token)
 	{
@@ -73,7 +77,7 @@ char *get_loc(char *command)
 		file_path = malloc(command_length + directory_length + 2);
 		if (!file_path)
 		{
-			free(path_copy);
+			free(path_c);
 			return (NULL);
 		}
 		strncpy(file_path, path_token, directory_length);
@@ -81,13 +85,13 @@ char *get_loc(char *command)
 		strncpy(file_path + directory_length + 1, command, command_length + 1);
 		if (stat(file_path, &buffer) == 0)
 		{
-			free(path_copy);
+			free(path_c);
 			return (file_path);
 		}
 		free(file_path);
 		path_token = strtok(NULL, ":");
 	}
-	free(path_copy);
+	free(path_c);
 	if (stat(command, &buffer) == 0)
 	{
 		return (str_duplicate(command));
@@ -142,7 +146,6 @@ char **token(char **argv, char *getin, size_t size)
 	argv = malloc(sizeof(char *) * (n_tokens + 1));
 	if (argv == NULL)
 	{
-		_print("err memory allocate ..");
 		free(c_getin);
 		return (NULL);
 	}
@@ -159,7 +162,7 @@ char **token(char **argv, char *getin, size_t size)
 	}
 	else if (_strcmp(argv[0], "env") == 0)
 	{
-		print_environment(environ);
+		print_env(environ);
 	}
 	free(c_getin);
 	return (argv);

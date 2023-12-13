@@ -12,7 +12,7 @@
 
 extern char **environ;
 /*****exec.c*****/
-void *execmd(char **argv);
+void *exec(char **argv);
 
 /*****_fork.c*****/
 int _fork(char **new_argv);
@@ -32,14 +32,12 @@ int _strcmp(const char *str1, const char *str2);
 
 /*****prints_help.c****/
 int _print(char *string);
-void print_environment(char *env[]);
+void print_env(char *env[]);
 
 /*****main.c*****/
 char **token(char **argv, char *getin, size_t size);
-char *get_loc(char *command);
+char *path_finder(char *command);
 char **cleanup_and_exit(char **argv, char *c_getin);
-
-/*****_getenv.c*****/
 
 
 

@@ -1,34 +1,34 @@
 #include "main.h"
 
 /**
- * execmd - function that execute the command
+ * exec - function that execute the command
  * @argv: array of the command
  *
  * Return: void
 */
 
-void *execmd(char **argv)
+void *exec(char **argv)
 {
-	char *command = NULL, *rel_command = NULL;
+	char *line = NULL, *rel_line = NULL;
 
 	if (!argv)
 	{
 		return (NULL);
 	}
 
-	command = argv[0];
-	rel_command = get_loc(command);
+	line = argv[0];
+	rel_line = path_finder(line);
 
-	if (!rel_command)
-	{	
+	if (!rel_line)
+	{
 
-		free(command);
+		free(line);
 		return (NULL);
 	}
-	if (execve(rel_command, argv, NULL) == -1)
+	if (execve(rel_line, argv, NULL) == -1)
 	{
 		perror("execve failed");
 	}
-	free(rel_command);
+	free(rel_line);
 	return (NULL);
 }

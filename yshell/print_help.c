@@ -13,11 +13,11 @@ int _print(char *string)
 
 
 /**
- * print_environment - print env
+ * print_env - print env
  * @env: array
  * Return: void
 */
-void print_environment(char *env[])
+void print_env(char *env[])
 {
 	int i = 0;
 

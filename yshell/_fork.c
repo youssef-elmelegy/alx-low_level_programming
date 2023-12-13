@@ -13,12 +13,11 @@ int _fork(char **new_argv)
 
 	if (child == -1)
 	{
-		perror("fork failed");
 		return (-1);
 	}
 	if (child == 0)
 	{
-		execmd(new_argv);
+		exec(new_argv);
 		return (-1);
 	}
 	else

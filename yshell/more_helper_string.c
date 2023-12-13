@@ -9,13 +9,13 @@
  */
 char *_strcpy(char *destination, const char *source)
 {
-	char *originalDestination = destination;
+	char *oDestination = destination;
 
 	while ((*destination++ = *source++) != '\0')
 	{
 	}
 
-	return (originalDestination);
+	return (oDestination);
 }
 
 /**
@@ -39,10 +39,10 @@ char *_strcat(char *destination, char *source)
 		destination = realloc(destination, destination_length + source_length + 1);
 	if (!destination)
 	{
-		perror("realloc failed");
 		return (NULL);
 	}
 	}
+
 	_strcpy(destination + destination_length, source);
 	return (original_destination);
 }
