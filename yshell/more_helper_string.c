@@ -30,7 +30,7 @@ char *_strcat(char *destination, char *source)
 	char *original_destination = destination;
 	int destination_length = 0;
 	int source_length = 0;
-	
+
 	destination_length = str_length(destination);
 	source_length = str_length(source);
 
