@@ -1,4 +1,4 @@
-#include "main.h"
+#include "shell.h"
 
 /**
  * _fork - create a child to execute command

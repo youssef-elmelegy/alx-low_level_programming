@@ -1,4 +1,4 @@
-#include "main.h"
+#include "shell.h"
 
 /**
  * exec - function that execute the command
