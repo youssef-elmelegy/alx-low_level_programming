@@ -9,6 +9,7 @@
 int _fork(char **new_argv)
 {
 	pid_t child = fork();
+	int status = 0;
 
 	if (child == -1)
 	{
@@ -22,8 +23,6 @@ int _fork(char **new_argv)
 	}
 	else
 	{
-		int status = 0;
-
 		wait(&status);
 	}
 	return (0);
