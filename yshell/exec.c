@@ -7,26 +7,28 @@
  * Return: void
 */
 
-void execmd(char **argv)
+void *execmd(char **argv)
 {
 	char *command = NULL, *rel_command = NULL;
 
 	if (!argv)
 	{
-		return;
+		return (NULL);
 	}
 
 	command = argv[0];
 	rel_command = get_loc(command);
 
 	if (!rel_command)
-	{
-		perror("Failed to locate command");
-		return;
+	{	
+
+		free(command);
+		return (NULL);
 	}
 	if (execve(rel_command, argv, NULL) == -1)
 	{
 		perror("execve failed");
 	}
 	free(rel_command);
+	return (NULL);
 }
